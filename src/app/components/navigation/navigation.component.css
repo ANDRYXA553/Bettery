@@ -1,0 +1,41 @@
+.nav-links a {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 19px;
+  text-decoration: none;
+  color: #90ABBF;
+
+}
+
+.navigation {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  margin: 0 20px 20px 20px;
+}
+
+.nav-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 45px;
+  transition: 0.3s ease-in-out;
+}
+.nav-item:hover {
+  border-bottom: 1px solid #DFDFDF;
+
+}
+.nav-links a:hover{
+  color: #40D186;
+}
+.filter p {
+  color: #90ABBF;
+}
+.filter{
+  margin-left: 350px;
+}

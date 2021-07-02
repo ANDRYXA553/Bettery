@@ -1,0 +1,41 @@
+.header{
+  display: flex;
+
+  justify-content: space-between;
+}
+.header-left-side{
+  display: flex;
+}
+.bitcoin{
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+.eth{
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+.profile{
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+
+}
+.bitcoin img{
+  width: 42px;
+  height: 40px;
+  margin-left: 15px;
+}
+.eth img{
+  width: 22px;
+  height: 37px;
+margin-left: 15px;
+}
+.profile img{
+  margin: 15px;
+}
+.notification{
+  justify-content: center;
+  align-items: center;
+}

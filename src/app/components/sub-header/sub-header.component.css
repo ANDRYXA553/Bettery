@@ -1,0 +1,81 @@
+.search-item{
+  width: 495px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+
+}
+.search-item input{
+  margin-left: 10px;
+  border: 0;
+  width: 450px;
+  outline: none;
+}
+.search-icon{
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.friends-button {
+  margin-left: 15px;
+  width: 123px;
+  height: 40px;
+  cursor: pointer;
+  background: #FFD300;
+  border: 2px solid #FFD300;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-media-button {
+  margin-left: 15px;
+  width: 123px;
+  height: 40px;
+  cursor: pointer;
+  background: #FFD300;
+  border: 2px solid #FFD300;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.moments-button {
+  margin-left: 15px;
+  width: 122px;
+  height: 40px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.playIcon {
+  margin-left: 15px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #C8C8C8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.sub-header{
+  display: flex;
+}

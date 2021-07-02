@@ -1,0 +1,53 @@
+<div class="cardItem">
+  <div class="card-item-logo">
+    <img class="card-item-logo-img"
+         [src]="cardListItem.thumImage==='undefined' ?'assets/img/cardItemIcons/testPreview.svg':cardListItem.thumImage"
+         alt="">
+  </div>
+  <div class="card-item-content">
+    <div class="card-item-top-content">
+      <div class="title">
+        <h3>{{cardListItem.question}}?</h3>
+        <p class="timer">Ending in:40:59</p>
+      </div>
+      <div class="card-item-bets">
+        <div class="options">
+          <h3 *ngFor=" let answer of cardListItem.answers">{{answer}}</h3>
+        </div>
+        <div class="bet-input">
+          <p>BTY</p>
+          <input type="text">
+          <h3>Bet now</h3>
+        </div>
+      </div>
+    </div>
+    <div class="card-item-bottom-content">
+      <div class="card-item-statistic">
+        <div style="display: flex ;column-gap: 5px; align-items: center">
+          <img [src]="cardListItem.host.avatat  || 'assets/img/cardItemIcons/nonameLogo.svg'" width="24" height="24" alt="">
+          <span>{{cardListItem.host.nickName}}</span>
+        </div>
+        <div style="display: flex ;column-gap: 5px; align-items: center">
+          <img src="assets/img/cardItemIcons/joinedIcon.svg" alt="">
+          <span>{{cardListItem.room.eventAmount}}</span>
+        </div>
+        <div style="display: flex ; column-gap: 5px;align-items: center">
+          <img src="assets/img/cardItemIcons/avgBetIcon.svg" alt="">
+          <span>({{avgBet}})Avg.Bet</span>
+        </div>
+        <div style="display: flex ;column-gap: 5px; align-items: center">
+          <img src="assets/img/cardItemIcons/avengersIcon.svg" alt="">
+          <b>Avengers(1200)</b>
+        </div>
+      </div>
+      <div class="card-item-comments">
+        <div class="comments">
+          <img src="" alt="">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit, sed do eiusmod tempor incididunt ut labore et d.... (see 723 more comments)</p>
+        </div>
+        <h2>Join Event</h2>
+      </div>
+    </div>
+  </div>
+</div>
