@@ -1,9 +1,9 @@
+
 .cardItem {
   display: flex;
-  margin: 20px 200px 20px 200px;
+  margin: 0 auto;
 
 }
-
 .card-item-content {
   height: 211px;
   width: 701px;
@@ -19,6 +19,9 @@
 .title h3 {
   color: #0094FF;
   width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 .card-item-top-content {
@@ -30,6 +33,7 @@
 .options {
   display: flex;
   width: 80%;
+  height: 50px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -50,21 +54,29 @@
 .bet-input input {
   width: 54px;
   height: 33px;
-  margin: 0 20px;
+  margin: 0 15px;
   background: #FFFFFF;
   border-radius: 8px;
   outline: none;
   border: 0;
 }
-
+.timer{
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
 .options h3 {
   margin-right: 20px;
   overflow: hidden;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .bet-input h3 {
   color: #34DDDD;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .card-item-statistic {

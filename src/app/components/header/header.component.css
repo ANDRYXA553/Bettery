@@ -1,41 +1,65 @@
-.header{
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+p{
+  margin: 0 0 8px 10px;
+}
+.header {
   display: flex;
 
   justify-content: space-between;
 }
-.header-left-side{
+
+.header-left-side {
   display: flex;
 }
-.bitcoin{
-  display: flex;
-  margin-left: 15px;
-  align-items: center;
-}
-.eth{
+
+.bitcoin {
   display: flex;
   margin-left: 15px;
   align-items: center;
 }
-.profile{
+
+.eth {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+
+.profile {
   margin-left: 15px;
   display: flex;
   align-items: center;
 
 }
-.bitcoin img{
+
+.bitcoin img {
   width: 42px;
   height: 40px;
   margin-left: 15px;
 }
-.eth img{
+
+.eth img {
   width: 22px;
   height: 37px;
-margin-left: 15px;
+  margin-left: 15px;
 }
-.profile img{
+
+.profile img {
   margin: 15px;
 }
-.notification{
+
+.notification {
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.notification img {
+  margin: 0;
+}
+
+.bitcoin p {
+  margin: 0 0 8px 10px;
 }

@@ -16,32 +16,48 @@ export class CardListComponent implements OnInit {
   totalItems: number
 
   constructor(private dataFetchService: DataFetchService, private dataTransfer: DataTransferService, private activatedRoute: ActivatedRoute) {
-
+    this.setDataFromDataTransfer()
   }
 
   ngOnInit(): void {
-    this.setDataFromDataTransfer()
+
     this.sortDataByParams()
+    this.searchFilter()
   }
 
 
   setDataFromDataTransfer() {
     this.dataTransfer.store.subscribe(value => {
-      this.searchData = value.searchedData
-      this.cardList = value.data.filter(value => {
+      this.searchData = value.searchedData;
+      this.cardList = value.data
+      this.totalItems = this.cardList.length;
+    })
+
+  }
+
+  searchFilter() {
+    this.dataTransfer.store.subscribe(value => {
+      this.cardList = this.cardList.filter(value => {
         return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase())
       })
-      this.totalItems = this.cardList.length;
-      console.log(this.cardList)
+
     })
 
   }
 
   sortDataByParams() {
     this.activatedRoute.params.subscribe(value => {
+      if ((value.sortType===undefined)) {
+        this.dataTransfer.store.subscribe(value=>{
+          console.log(value.data)
+        })
+        console.log(11)
+        this.cardList=this.dataTransfer.store.getValue().data
+        console.log(this.cardList)
+      }
       if (value.sortType === 'trending') {
         this.dataTransfer.store.subscribe(value => {
-          this.cardList = value.data.sort((a, b) => {
+          this.cardList = this.cardList.sort((a, b) => {
             if (a.room.eventAmount > b.room.eventAmount) {
               return -1
             }
@@ -55,7 +71,7 @@ export class CardListComponent implements OnInit {
       }
       if (value.sortType === 'controversial') {
         this.dataTransfer.store.subscribe(value => {
-          this.cardList = value.data.sort((a, b) => {
+          this.cardList = this.cardList.sort((a, b) => {
             if (a.controversial > b.controversial) {
               return -1
             }
@@ -70,12 +86,11 @@ export class CardListComponent implements OnInit {
       }
       if (value.sortType === 'following') {
         this.dataTransfer.store.subscribe(value => {
-
-          this.cardList = value.data.filter(value => value.finalAnswer !== null)
+          this.cardList = this.cardList.filter(value => value.finalAnswer !== null)
         })
 
       }
-    })
 
+    })
   }
 }

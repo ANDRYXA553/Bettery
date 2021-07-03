@@ -8,7 +8,7 @@
     <div class="card-item-top-content">
       <div class="title">
         <h3>{{cardListItem.question}}?</h3>
-        <p class="timer"><b>Ending in: </b>{{cardListItem.endTime | date: 'yyyy/MM/dd h:mm:ss a'}}</p>
+        <div class="timer"><b style="width: 90px" >Ending in:</b><span>{{cardListItem.endTime | date: 'h:mm:ss'}}</span></div>
       </div>
       <div class="card-item-bets">
         <div class="options">
