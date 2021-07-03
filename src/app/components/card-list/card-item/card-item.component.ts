@@ -15,11 +15,14 @@ export class CardItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.avgBetCalculator()
+  }
+
+  avgBetCalculator() {
     let sumPaY = 0
     this.cardListItem.parcipiantAnswers.forEach(value => {
       sumPaY += value.payToken
     })
     this.avgBet = +(sumPaY / this.cardListItem.parcipiantAnswers.length).toFixed(2)
   }
-
 }

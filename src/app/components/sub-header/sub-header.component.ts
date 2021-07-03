@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataTransferService} from "../../services/data-transfer.service";
 
 @Component({
   selector: 'app-sub-header',
@@ -6,10 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sub-header.component.css']
 })
 export class SubHeaderComponent implements OnInit {
+  searchData: string
 
-  constructor() { }
+  constructor(private dataTransfer: DataTransferService) {
+  }
 
   ngOnInit(): void {
   }
 
+  search() {
+    if (this.searchData !== "") {
+      console.log(this.searchData);
+      const {data} = this.dataTransfer.store.getValue()
+      this.dataTransfer.store.next({data, searchedData: this.searchData})
+    } else if (this.searchData == "") {
+      const {data} = this.dataTransfer.store.getValue()
+      this.dataTransfer.store.next({data, searchedData:""})
+      this.ngOnInit()
+    }
+
+
+  }
 }

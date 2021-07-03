@@ -8,7 +8,7 @@
     <div class="card-item-top-content">
       <div class="title">
         <h3>{{cardListItem.question}}?</h3>
-        <p class="timer">Ending in:40:59</p>
+        <p class="timer"><b>Ending in: </b>{{cardListItem.endTime | date: 'yyyy/MM/dd h:mm:ss a'}}</p>
       </div>
       <div class="card-item-bets">
         <div class="options">
@@ -29,11 +29,11 @@
         </div>
         <div style="display: flex ;column-gap: 5px; align-items: center">
           <img src="assets/img/cardItemIcons/joinedIcon.svg" alt="">
-          <span>{{cardListItem.room.eventAmount}}</span>
+          <span><b style="margin-right: 5px">{{cardListItem.room.eventAmount}}</b>Joined</span>
         </div>
         <div style="display: flex ; column-gap: 5px;align-items: center">
           <img src="assets/img/cardItemIcons/avgBetIcon.svg" alt="">
-          <span>({{avgBet}})Avg.Bet</span>
+          <span>(<b>{{avgBet}}</b>)Avg.Bet</span>
         </div>
         <div style="display: flex ;column-gap: 5px; align-items: center">
           <img src="assets/img/cardItemIcons/avengersIcon.svg" alt="">

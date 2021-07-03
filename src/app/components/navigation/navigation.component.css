@@ -25,6 +25,7 @@
   width: 100px;
   height: 45px;
   transition: 0.3s ease-in-out;
+  margin: 0 10px 10px 10px;
 }
 .nav-item:hover {
   border-bottom: 1px solid #DFDFDF;

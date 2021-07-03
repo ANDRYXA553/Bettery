@@ -1,7 +1,7 @@
 <div class="sub-header">
   <div class="search-item">
     <div class="search-icon"><img src="assets/img/subHeaderIcons/searchIcon.svg" alt=""></div>
-    <input type="text" placeholder="What are you interested in?">
+    <input type="text" placeholder="What are you interested in?" [(ngModel)]="searchData" (input)="search()">
   </div>
   <div class="friends-button" >
     <div style="display: flex">

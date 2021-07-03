@@ -1,5 +1,7 @@
 .cardItem {
   display: flex;
+  margin: 20px 200px 20px 200px;
+
 }
 
 .card-item-content {
@@ -16,6 +18,7 @@
 
 .title h3 {
   color: #0094FF;
+  width: 100%;
 }
 
 .card-item-top-content {
@@ -26,6 +29,9 @@
 
 .options {
   display: flex;
+  width: 80%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .bet-input {
@@ -38,6 +44,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0 30px;
+  box-sizing: border-box;
 }
 
 .bet-input input {
@@ -52,6 +59,7 @@
 
 .options h3 {
   margin-right: 20px;
+  overflow: hidden;
 }
 
 .bet-input h3 {

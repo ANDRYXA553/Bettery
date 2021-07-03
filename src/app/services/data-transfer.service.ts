@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {CardItemInterface} from "../interfaces/card-item-interface";
+import {DataFetchService} from "./data-fetch.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class DataTransferService {
         nickName: "Alexjump1000"
       },
       endTime: 1624954800,
+      eventEnd:1622539692,
+      finalAnswer:null,
       question: "fiona iss testing",
       id: 562949953421549,
       startTime: 1624953415,
@@ -28,13 +31,22 @@ export class DataTransferService {
         answer: 1,
         date: 1,
         userId: 1,
-        payToken:0
+        payToken: 0
       }],
-      thumImage: "undefined"
+      thumImage: "undefined",
+      controversial:0,
+      betOutCome:{}
     }]
 
-  constructor() {
+  constructor(private dataFetchService:DataFetchService) {
+  // this.dataFetchService.getData().subscribe(value => {
+  //   this.store.next({data:value,searchedData:""})
+  // })
   }
 
-  store = new BehaviorSubject<CardItemInterface[]>(this.dataModel)
+  store = new BehaviorSubject<{ data: CardItemInterface[] | [], searchedData: string }>({
+      data: [],
+      searchedData: ""
+    }
+  )
 }
