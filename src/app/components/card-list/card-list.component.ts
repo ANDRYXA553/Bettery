@@ -16,11 +16,11 @@ export class CardListComponent implements OnInit {
   totalItems: number
 
   constructor(private dataFetchService: DataFetchService, private dataTransfer: DataTransferService, private activatedRoute: ActivatedRoute) {
-    this.setDataFromDataTransfer()
+
   }
 
   ngOnInit(): void {
-
+    this.setDataFromDataTransfer()
     this.sortDataByParams()
     this.searchFilter()
   }
@@ -28,8 +28,9 @@ export class CardListComponent implements OnInit {
 
   setDataFromDataTransfer() {
     this.dataTransfer.store.subscribe(value => {
+      console.log(value.data)
       this.searchData = value.searchedData;
-      this.cardList = value.data
+      this.cardList = value.data;
       this.totalItems = this.cardList.length;
     })
 
@@ -47,17 +48,14 @@ export class CardListComponent implements OnInit {
 
   sortDataByParams() {
     this.activatedRoute.params.subscribe(value => {
-      if ((value.sortType===undefined)) {
-        this.dataTransfer.store.subscribe(value=>{
-          console.log(value.data)
+      if ((value.sortType === undefined)) {
+        this.dataTransfer.store.subscribe(value => {
         })
-        console.log(11)
-        this.cardList=this.dataTransfer.store.getValue().data
-        console.log(this.cardList)
+        this.cardList = this.dataTransfer.store.getValue().data
       }
       if (value.sortType === 'trending') {
         this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.sort((a, b) => {
+          this.cardList = this.cardList.slice().sort((a, b) => {
             if (a.room.eventAmount > b.room.eventAmount) {
               return -1
             }
@@ -71,7 +69,7 @@ export class CardListComponent implements OnInit {
       }
       if (value.sortType === 'controversial') {
         this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.sort((a, b) => {
+          this.cardList = this.cardList.slice().sort((a, b) => {
             if (a.controversial > b.controversial) {
               return -1
             }
