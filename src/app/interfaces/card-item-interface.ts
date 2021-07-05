@@ -15,6 +15,6 @@ export interface CardItemInterface{
   room:{eventAmount:number}
   thumImage:string,
   controversial:number,
-  betOutCome:{},
+  betOutCome:any [],
   avgBet:number
 }

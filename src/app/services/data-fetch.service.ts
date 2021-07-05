@@ -26,12 +26,11 @@ export class DataFetchService {
   }
 
   addControversyProp(obj: CardItemInterface) {
-    let betOutCome: any = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0};
+
+    let betOutCome: any = {};
 
     obj.parcipiantAnswers.forEach(value => {
-      if (betOutCome.hasOwnProperty(value.answer)) {
-        betOutCome[value.answer] += 1
-      }
+      (betOutCome.hasOwnProperty(value.answer)) ? betOutCome[value.answer] += 1 : betOutCome[value.answer] = 1;
     });
 
     let sorted: any = [];
@@ -41,16 +40,22 @@ export class DataFetchService {
         sorted.push(betOutCome[betOutComeKey]);
       }
     }
+
     sorted = sorted.sort().reverse().slice(0, 2);
+
     obj.betOutCome = sorted;
-    obj.controversial = +(1 - (((betOutCome[0]) / obj.answerAmount) + ((betOutCome[1]) / obj.answerAmount))).toFixed(2);
+
+    const firstPlace=obj.betOutCome[0];
+    const secondPlace=obj.betOutCome[1];
+
+    obj.controversial = +(1 - ((firstPlace / obj.answerAmount) + ((secondPlace || 0) / obj.answerAmount))).toFixed(2);
 
     obj.avgBet = this.avgBetCalculator(obj);
 
     return obj;
   }
 
-  avgBetCalculator(obj:CardItemInterface) {
+  avgBetCalculator(obj: CardItemInterface) {
     let sumPaY = 0
 
     obj.parcipiantAnswers.forEach(obj => {

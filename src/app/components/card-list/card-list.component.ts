@@ -31,6 +31,7 @@ export class CardListComponent implements OnInit {
 
       this.searchData = value.searchedData;
       this.cardList = value.data;
+      console.log(this.cardList)
     });
 
   }
@@ -39,9 +40,10 @@ export class CardListComponent implements OnInit {
     this.activatedRoute.params.subscribe(value => {
 
       if ((value.sortType === undefined)) {
-        this.dataTransfer.store.subscribe(value => {
-        });
-        this.cardList = this.dataTransfer.store.getValue().data;
+        // this.dataTransfer.store.subscribe(value => {
+        // });
+        this.cardList = this.dataTransfer.store.getValue().data.slice();
+        console.log(this.cardList)
       }
 
       if (value.sortType === 'trending') {
@@ -58,6 +60,7 @@ export class CardListComponent implements OnInit {
             }
             return 0;
           });
+          console.log(this.cardList)
         });
       }
 
@@ -75,6 +78,7 @@ export class CardListComponent implements OnInit {
             }
             return 0
           });
+          console.log(this.cardList)
         });
       }
 
