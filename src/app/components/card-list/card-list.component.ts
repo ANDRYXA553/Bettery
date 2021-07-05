@@ -22,7 +22,7 @@ export class CardListComponent implements OnInit {
   ngOnInit(): void {
     this.setDataFromDataTransfer();
     this.sortDataByParams();
-    this.searchFilter();
+    // this.searchFilter();
   }
 
 
@@ -31,19 +31,18 @@ export class CardListComponent implements OnInit {
 
       this.searchData = value.searchedData;
       this.cardList = value.data;
-      console.log(this.cardList)
     });
 
   }
 
   sortDataByParams() {
     this.activatedRoute.params.subscribe(value => {
-
+      this.searchFilter()
       if ((value.sortType === undefined)) {
-        // this.dataTransfer.store.subscribe(value => {
-        // });
-        this.cardList = this.dataTransfer.store.getValue().data.slice();
-        console.log(this.cardList)
+        this.dataTransfer.store.subscribe(value => {
+
+          this.cardList =value.data ;
+        });
       }
 
       if (value.sortType === 'trending') {
@@ -60,6 +59,7 @@ export class CardListComponent implements OnInit {
             }
             return 0;
           });
+
           console.log(this.cardList)
         });
       }
@@ -78,6 +78,7 @@ export class CardListComponent implements OnInit {
             }
             return 0
           });
+
           console.log(this.cardList)
         });
       }
@@ -85,7 +86,7 @@ export class CardListComponent implements OnInit {
       if (value.sortType === 'following') {
         this.dataTransfer.store.subscribe(value => {
 
-          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
+          this.cardList = value.data.filter(value => value.finalAnswer !== null);
         });
       }
     });
@@ -94,12 +95,12 @@ export class CardListComponent implements OnInit {
   searchFilter() {
     this.dataTransfer.store.subscribe(value => {
 
-      this.cardList = this.cardList.filter(value => {
+      this.cardList = value.data.slice().filter(value => {
         return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase());
       });
 
       this.totalItems = this.cardList.length;
-
+      console.log(this.cardList)
     });
 
   }
