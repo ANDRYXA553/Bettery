@@ -40,6 +40,7 @@ export class CardItemComponent implements OnInit {
   madeBet() {
 
     if (this.myForm.valid) {
+      console.log(this.cardListItem)
       console.log(
         {
           eventId:this.cardListItem.id,
@@ -47,13 +48,7 @@ export class CardItemComponent implements OnInit {
           bet: this.bet.value,
           answer: this.chosenAnswer.value
         });
-      alert('Your bet info logged');
       return;
     }
-    alert('Form is not valid.' +
-      'Pls Choose your answer and make your bet(min 0,01)');
-  }
-  // madeBet() {
-  //   console.log(this.myForm)
-  // }
+  };
 }

@@ -36,7 +36,10 @@
 }
 .filter p {
   color: #90ABBF;
+  margin-bottom: 33px;
 }
 .filter{
+  display: flex;
   margin-left: 350px;
+  align-items: center;
 }

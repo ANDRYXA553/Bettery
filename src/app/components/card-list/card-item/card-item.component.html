@@ -21,7 +21,7 @@
 
           </div>
           <div class="bet-input">
-            <p>BTY</p>
+            <span>BTY</span>
             <input type="number" [min]="0.01"  [formControl]="bet" [value]="bet.value" name="bet" >
             <button type="submit" [class.button-crossed]="!myForm.valid" [disabled]="!myForm.valid" >Bet now</button>
           </div>
