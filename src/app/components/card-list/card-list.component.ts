@@ -10,28 +10,81 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
-  cardList: CardItemInterface[]
-  searchData: string
-  page = 1
-  totalItems: number
+  cardList: CardItemInterface[];
+  searchData: string;
+  page = 1;
+  totalItems: number;
 
   constructor(private dataFetchService: DataFetchService, private dataTransfer: DataTransferService, private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-    this.setDataFromDataTransfer()
-    this.sortDataByParams()
-    this.searchFilter()
+    this.setDataFromDataTransfer();
+    this.sortDataByParams();
+    this.searchFilter();
   }
 
 
   setDataFromDataTransfer() {
     this.dataTransfer.store.subscribe(value => {
+
       this.searchData = value.searchedData;
       this.cardList = value.data;
-    })
+    });
 
+  }
+
+  sortDataByParams() {
+    this.activatedRoute.params.subscribe(value => {
+
+      if ((value.sortType === undefined)) {
+        this.dataTransfer.store.subscribe(value => {
+        });
+        this.cardList = this.dataTransfer.store.getValue().data;
+      }
+
+      if (value.sortType === 'trending') {
+        this.dataTransfer.store.subscribe(value => {
+
+          this.cardList = this.cardList.slice().sort((a, b) => {
+
+            if (a.room.eventAmount > b.room.eventAmount) {
+              return -1;
+            }
+            if (a.room.eventAmount < b.room.eventAmount) {
+
+              return 1;
+            }
+            return 0;
+          });
+        });
+      }
+
+      if (value.sortType === 'controversial') {
+        this.dataTransfer.store.subscribe(value => {
+
+          this.cardList = this.cardList.slice().sort((a, b) => {
+
+            if (a.controversial > b.controversial) {
+              return -1
+            }
+            if (a.controversial < b.controversial) {
+
+              return 1
+            }
+            return 0
+          });
+        });
+      }
+
+      if (value.sortType === 'following') {
+        this.dataTransfer.store.subscribe(value => {
+
+          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
+        });
+      }
+    });
   }
 
   searchFilter() {
@@ -45,52 +98,5 @@ export class CardListComponent implements OnInit {
 
     });
 
-  }
-
-  sortDataByParams() {
-    this.activatedRoute.params.subscribe(value => {
-
-      if ((value.sortType === undefined)) {
-        this.dataTransfer.store.subscribe(value => {
-        })
-        this.cardList = this.dataTransfer.store.getValue().data;
-      }
-
-      if (value.sortType === 'trending') {
-        this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.slice().sort((a, b) => {
-            if (a.room.eventAmount > b.room.eventAmount) {
-              return -1
-            }
-            if (a.room.eventAmount < b.room.eventAmount) {
-
-              return 1
-            }
-            return 0
-          });
-        })
-      }
-
-      if (value.sortType === 'controversial') {
-        this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.slice().sort((a, b) => {
-            if (a.controversial > b.controversial) {
-              return -1
-            }
-            if (a.controversial < b.controversial) {
-
-              return 1
-            }
-            return 0
-          });
-        })
-      }
-
-      if (value.sortType === 'following') {
-        this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
-        });
-      }
-    });
   }
 }

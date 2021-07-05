@@ -12,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {NgxPaginationModule} from "ngx-pagination";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PagginationComponent } from './components/paggination/paggination.component';
 
 const routes:Routes=[
   {path:'',component:CardListComponent},
@@ -25,11 +24,10 @@ const routes:Routes=[
     SubHeaderComponent,
     NavigationComponent,
     CardListComponent,
-    CardItemComponent,
-    PagginationComponent
+    CardItemComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes), NgxPaginationModule, NgbModule, ReactiveFormsModule
+    BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes), NgxPaginationModule, NgbModule, ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./card-item.component.css']
 })
 export class CardItemComponent implements OnInit {
-  avgBet: number
   @Input()
   cardListItem: CardItemInterface
 
@@ -25,22 +24,13 @@ export class CardItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.avgBetCalculator();
+
   };
 
 
-  avgBetCalculator() {
-    let sumPaY = 0
-    this.cardListItem.parcipiantAnswers.forEach(value => {
-      sumPaY += value.payToken
-    })
-    this.avgBet = +(sumPaY / this.cardListItem.parcipiantAnswers.length).toFixed(2)
-  };
-
-  madeBet() {
+  makeBet() {
 
     if (this.myForm.valid) {
-      console.log(this.cardListItem)
       console.log(
         {
           eventId:this.cardListItem.id,

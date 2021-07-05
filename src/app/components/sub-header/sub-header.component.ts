@@ -17,13 +17,15 @@ export class SubHeaderComponent implements OnInit {
 
   search() {
     if (this.searchData !== "") {
-      console.log(this.searchData);
-      const {data} = this.dataTransfer.store.getValue()
-      this.dataTransfer.store.next({data, searchedData: this.searchData})
+      const {data} = this.dataTransfer.store.getValue();
+
+      this.dataTransfer.store.next({data, searchedData: this.searchData});
+
     } else if (this.searchData == "") {
-      const {data} = this.dataTransfer.store.getValue()
-      this.dataTransfer.store.next({data, searchedData:""})
-      this.ngOnInit()
+      const {data} = this.dataTransfer.store.getValue();
+
+      this.dataTransfer.store.next({data, searchedData:""});
+      this.ngOnInit();
     }
 
 

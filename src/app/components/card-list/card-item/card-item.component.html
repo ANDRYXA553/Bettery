@@ -11,7 +11,7 @@
         <div class="timer"><b style="width: 90px">Ending in:</b><span>{{cardListItem.endTime | date: 'h:mm:ss'}}</span>
         </div>
       </div>
-      <form [formGroup]="myForm" (ngSubmit)="madeBet()">
+      <form [formGroup]="myForm" (ngSubmit)="makeBet()">
         <div class="card-item-bets">
           <div class="options">
 
@@ -41,7 +41,7 @@
         </div>
         <div style="display: flex ; column-gap: 5px;align-items: center">
           <img src="assets/img/cardItemIcons/avgBetIcon.svg" alt="">
-          <span>(<b>{{avgBet}}</b>)Avg.Bet</span>
+          <span>(<b>{{cardListItem.avgBet}}</b>)Avg.Bet</span>
         </div>
         <div style="display: flex ;column-gap: 5px; align-items: center">
           <img src="assets/img/cardItemIcons/avengersIcon.svg" alt="">
