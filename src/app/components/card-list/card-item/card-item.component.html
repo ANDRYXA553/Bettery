@@ -16,7 +16,7 @@
           <div class="options">
 
             <h3 *ngFor=" let answer of cardListItem.answers">
-              <input type="radio" [name]="cardListItem.question"  [value]="answer" [formControl]="chosenAnswer" >{{answer}}
+              <input class="answer-radio" type="radio" [name]="cardListItem.question"  [value]="answer" [formControl]="chosenAnswer" >{{answer}}
             </h3>
 
           </div>

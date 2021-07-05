@@ -1,8 +1,9 @@
 
 .cardItem {
   display: flex;
-  margin: 0  auto 20px;
+  margin: 0 auto 20px;
 }
+
 .card-item-content {
   height: 211px;
   width: 701px;
@@ -60,7 +61,8 @@
   outline: none;
   border: 0;
 }
-.bet-input button{
+
+.bet-input button {
   width: 80px;
   border: 0;
   background-color: #E6FFF2;
@@ -71,19 +73,23 @@
   transition: 0.1s;
   border-radius: 10%;
 }
-.bet-input button:active{
+
+.bet-input button:active {
 
   font-size: 12px;
   background-color: #8aa094;
 }
-.button-crossed{
+
+.button-crossed {
   text-decoration: red line-through;
 }
-.timer{
+
+.timer {
   display: flex;
   width: fit-content;
   align-items: center;
 }
+
 .options h3 {
   margin-right: 20px;
   overflow: hidden;
@@ -122,7 +128,7 @@
 
 .comments {
   width: 90%;
-display: flex;
+  display: flex;
 }
 
 .comments p {
@@ -135,4 +141,8 @@ display: flex;
   width: 210px;
   height: 210px;
   border-radius: 30px 0 0 30px;
+}
+
+.answer-radio {
+  margin-right: 5px;
 }

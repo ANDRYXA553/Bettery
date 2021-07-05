@@ -81,4 +81,5 @@ span{
 }
 .sub-header{
   display: flex;
+  padding: 0 35px;
 }
