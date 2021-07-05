@@ -8,7 +8,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { CardListComponent } from './components/card-list/card-list.component';
 import { CardItemComponent } from './components/card-list/card-item/card-item.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {NgxPaginationModule} from "ngx-pagination";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -28,9 +28,9 @@ const routes:Routes=[
     CardItemComponent,
     PagginationComponent
   ],
-    imports: [
-        BrowserModule, HttpClientModule, FormsModule,RouterModule.forRoot(routes),NgxPaginationModule, NgbModule
-    ],
+  imports: [
+    BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes), NgxPaginationModule, NgbModule, ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

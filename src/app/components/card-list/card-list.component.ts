@@ -28,31 +28,34 @@ export class CardListComponent implements OnInit {
 
   setDataFromDataTransfer() {
     this.dataTransfer.store.subscribe(value => {
-      console.log(value.data)
       this.searchData = value.searchedData;
       this.cardList = value.data;
-      this.totalItems = this.cardList.length;
     })
 
   }
 
   searchFilter() {
     this.dataTransfer.store.subscribe(value => {
-      this.cardList = this.cardList.filter(value => {
-        return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase())
-      })
 
-    })
+      this.cardList = this.cardList.filter(value => {
+        return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase());
+      });
+
+      this.totalItems = this.cardList.length;
+
+    });
 
   }
 
   sortDataByParams() {
     this.activatedRoute.params.subscribe(value => {
+
       if ((value.sortType === undefined)) {
         this.dataTransfer.store.subscribe(value => {
         })
-        this.cardList = this.dataTransfer.store.getValue().data
+        this.cardList = this.dataTransfer.store.getValue().data;
       }
+
       if (value.sortType === 'trending') {
         this.dataTransfer.store.subscribe(value => {
           this.cardList = this.cardList.slice().sort((a, b) => {
@@ -64,9 +67,10 @@ export class CardListComponent implements OnInit {
               return 1
             }
             return 0
-          })
+          });
         })
       }
+
       if (value.sortType === 'controversial') {
         this.dataTransfer.store.subscribe(value => {
           this.cardList = this.cardList.slice().sort((a, b) => {
@@ -78,17 +82,15 @@ export class CardListComponent implements OnInit {
               return 1
             }
             return 0
-          })
+          });
         })
-
       }
+
       if (value.sortType === 'following') {
         this.dataTransfer.store.subscribe(value => {
-          this.cardList = this.cardList.filter(value => value.finalAnswer !== null)
-        })
-
+          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
+        });
       }
-
-    })
+    });
   }
 }

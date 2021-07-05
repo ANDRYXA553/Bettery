@@ -8,23 +8,31 @@
     <div class="card-item-top-content">
       <div class="title">
         <h3>{{cardListItem.question}}?</h3>
-        <div class="timer"><b style="width: 90px" >Ending in:</b><span>{{cardListItem.endTime | date: 'h:mm:ss'}}</span></div>
-      </div>
-      <div class="card-item-bets">
-        <div class="options">
-          <h3 *ngFor=" let answer of cardListItem.answers">{{answer}}</h3>
-        </div>
-        <div class="bet-input">
-          <p>BTY</p>
-          <input type="text">
-          <h3>Bet now</h3>
+        <div class="timer"><b style="width: 90px">Ending in:</b><span>{{cardListItem.endTime | date: 'h:mm:ss'}}</span>
         </div>
       </div>
+      <form [formGroup]="myForm" (ngSubmit)="madeBet()">
+        <div class="card-item-bets">
+          <div class="options">
+
+            <h3 *ngFor=" let answer of cardListItem.answers">
+              <input type="radio" [name]="cardListItem.question"  [value]="answer" [formControl]="chosenAnswer" >{{answer}}
+            </h3>
+
+          </div>
+          <div class="bet-input">
+            <p>BTY</p>
+            <input type="number" [min]="0.01"  [formControl]="bet" [value]="bet.value" name="bet" >
+            <button type="submit" [class.button-crossed]="!myForm.valid" [disabled]="!myForm.valid" >Bet now</button>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="card-item-bottom-content">
       <div class="card-item-statistic">
         <div style="display: flex ;column-gap: 5px; align-items: center">
-          <img [src]="cardListItem.host.avatat  || 'assets/img/cardItemIcons/nonameLogo.svg'" width="24" height="24" alt="">
+          <img [src]="cardListItem.host.avatat  || 'assets/img/cardItemIcons/nonameLogo.svg'" width="24" height="24"
+               alt="">
           <span>{{cardListItem.host.nickName}}</span>
         </div>
         <div style="display: flex ;column-gap: 5px; align-items: center">
@@ -38,6 +46,9 @@
         <div style="display: flex ;column-gap: 5px; align-items: center">
           <img src="assets/img/cardItemIcons/avengersIcon.svg" alt="">
           <b>Avengers(1200)</b>
+        </div>
+        <div style="display: flex ;column-gap: 5px; align-items: center">
+          <b>Coef:{{cardListItem.controversial}}</b>
         </div>
       </div>
       <div class="card-item-comments">

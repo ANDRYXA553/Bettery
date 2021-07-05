@@ -1,8 +1,7 @@
 
 .cardItem {
   display: flex;
-  margin: 0 auto;
-
+  margin: 0  auto 20px;
 }
 .card-item-content {
   height: 211px;
@@ -59,6 +58,17 @@
   border-radius: 8px;
   outline: none;
   border: 0;
+}
+.bet-input button{
+  border: 0;
+  background-color: #E6FFF2;
+  color: #34DDDD;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+.button-crossed{
+  text-decoration: red line-through;
 }
 .timer{
   display: flex;

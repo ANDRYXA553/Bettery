@@ -1,14 +1,14 @@
 <div style="display: flex ; justify-content: center">
   <div *ngIf="cardList.length">
 
+    <app-card-item
+      *ngFor="let cardListItem of cardList | paginate: {id:'pag',itemsPerPage:10,currentPage:page,totalItems:totalItems}"
+      [cardListItem]="cardListItem"></app-card-item>
+
     <div style="display:flex;justify-content: center">
       <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false"
                       [boundaryLinks]="true"></ngb-pagination>
     </div>
-
-    <app-card-item
-      *ngFor="let cardListItem of cardList | paginate: {id:'pag',itemsPerPage:10,currentPage:page,totalItems:totalItems}"
-      [cardListItem]="cardListItem"></app-card-item>
   </div>
 </div>
 <h1 *ngIf="(!cardList.length && !searchData)">LOADING...</h1>
