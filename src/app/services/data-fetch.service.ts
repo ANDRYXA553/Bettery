@@ -15,14 +15,15 @@ export class DataFetchService {
   }
 
   getData(): Observable<CardItemInterface[]> {
-    return this.httpClient.get<CardItemInterface[]>(this.url).pipe(map((value: CardItemInterface[]) => {
-      return value.filter((obj: CardItemInterface) => {
+    return this.httpClient.get<CardItemInterface[]>(this.url)
+      .pipe(map((value: CardItemInterface[]) => value.filter((obj: CardItemInterface) => {
+
         if (!(obj.answerAmount > 1 && obj.host.avatat)) {
           return;
         }
         return this.addControversyProp(obj);
       })
-    }))
+    ));
   }
 
   addControversyProp(obj: CardItemInterface) {
@@ -33,17 +34,17 @@ export class DataFetchService {
       (betOutCome.hasOwnProperty(value.answer)) ? betOutCome[value.answer] += 1 : betOutCome[value.answer] = 1;
     });
 
-    let sorted: any = [];
+    let firstTwoPopularAnswers: any = [];
 
     for (const betOutComeKey in betOutCome) {
       if (betOutCome.hasOwnProperty(betOutComeKey)) {
-        sorted.push(betOutCome[betOutComeKey]);
+        firstTwoPopularAnswers.push(betOutCome[betOutComeKey]);
       }
     }
 
-    sorted = sorted.sort().reverse().slice(0, 2);
+    firstTwoPopularAnswers = firstTwoPopularAnswers.sort().reverse().slice(0, 2);
 
-    obj.betOutCome = sorted;
+    obj.betOutCome = firstTwoPopularAnswers;
 
     const firstPlace=obj.betOutCome[0];
     const secondPlace=obj.betOutCome[1];

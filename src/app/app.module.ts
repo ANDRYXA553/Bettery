@@ -27,7 +27,9 @@ const routes:Routes=[
     CardItemComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes), NgxPaginationModule, NgbModule, ReactiveFormsModule,
+    BrowserModule, HttpClientModule, FormsModule,
+    RouterModule.forRoot(routes), NgxPaginationModule,
+    NgbModule, ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

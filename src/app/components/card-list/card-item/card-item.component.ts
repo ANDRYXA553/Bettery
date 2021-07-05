@@ -18,7 +18,7 @@ export class CardItemComponent implements OnInit {
   myForm = new FormGroup({
     bet: this.bet,
     answer: this.chosenAnswer
-  })
+  });
 
   constructor() {
   }
@@ -29,9 +29,7 @@ export class CardItemComponent implements OnInit {
 
 
   makeBet() {
-
     if (this.myForm.valid) {
-      console.log(this.cardListItem)
       console.log(
         {
           eventId:this.cardListItem.id,

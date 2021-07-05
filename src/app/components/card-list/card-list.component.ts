@@ -22,7 +22,6 @@ export class CardListComponent implements OnInit {
   ngOnInit(): void {
     this.setDataFromDataTransfer();
     this.sortDataByParams();
-    // this.searchFilter();
   }
 
 
@@ -37,56 +36,55 @@ export class CardListComponent implements OnInit {
 
   sortDataByParams() {
     this.activatedRoute.params.subscribe(value => {
-      this.searchFilter()
+      this.searchFilter();
+
       if ((value.sortType === undefined)) {
         this.dataTransfer.store.subscribe(value => {
 
-          this.cardList =value.data ;
+          this.cardList = value.data;
         });
       }
 
       if (value.sortType === 'trending') {
         this.dataTransfer.store.subscribe(value => {
 
-          this.cardList = this.cardList.slice().sort((a, b) => {
+          this.cardList = this.cardList.sort((a, b) => {
 
             if (a.room.eventAmount > b.room.eventAmount) {
               return -1;
             }
+
             if (a.room.eventAmount < b.room.eventAmount) {
 
               return 1;
             }
             return 0;
           });
-
-          console.log(this.cardList)
         });
       }
 
       if (value.sortType === 'controversial') {
         this.dataTransfer.store.subscribe(value => {
 
-          this.cardList = this.cardList.slice().sort((a, b) => {
+          this.cardList = this.cardList.sort((a, b) => {
 
             if (a.controversial > b.controversial) {
-              return -1
+              return -1;
             }
+
             if (a.controversial < b.controversial) {
 
-              return 1
+              return 1;
             }
-            return 0
+            return 0;
           });
-
-          console.log(this.cardList)
         });
       }
 
       if (value.sortType === 'following') {
         this.dataTransfer.store.subscribe(value => {
 
-          this.cardList = value.data.filter(value => value.finalAnswer !== null);
+          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
         });
       }
     });
@@ -95,12 +93,11 @@ export class CardListComponent implements OnInit {
   searchFilter() {
     this.dataTransfer.store.subscribe(value => {
 
-      this.cardList = value.data.slice().filter(value => {
+      this.cardList = value.data.filter(value => {
         return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase());
       });
 
       this.totalItems = this.cardList.length;
-      console.log(this.cardList)
     });
 
   }
