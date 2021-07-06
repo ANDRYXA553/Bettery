@@ -3,6 +3,7 @@ import {DataFetchService} from "../../services/data-fetch.service";
 import {DataTransferService} from "../../services/data-transfer.service";
 import {CardItemInterface} from "../../interfaces/card-item-interface";
 import {ActivatedRoute} from "@angular/router";
+import {CardListService} from "../../services/card-list.service";
 
 @Component({
   selector: 'app-card-list',
@@ -15,13 +16,26 @@ export class CardListComponent implements OnInit {
   page = 1;
   totalItems: number;
 
-  constructor(private dataFetchService: DataFetchService, private dataTransfer: DataTransferService, private activatedRoute: ActivatedRoute) {
+  constructor(private dataFetchService: DataFetchService,
+              private cardListService: CardListService,
+              private dataTransfer: DataTransferService,
+              private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.setDataFromDataTransfer();
-    this.sortDataByParams();
+
+    this.activatedRoute.params.subscribe(value1 => {
+
+      this.dataTransfer.store.subscribe(value2 => {
+
+        this.cardList = this.cardListService.sortDataByParams(value2.data, value1,this.searchData).cardList;
+        this.totalItems = this.cardListService.sortDataByParams(value2.data, value1,this.searchData).totalItems;
+      });
+
+    });
+
   }
 
 
@@ -30,75 +44,10 @@ export class CardListComponent implements OnInit {
 
       this.searchData = value.searchedData;
       this.cardList = value.data;
+
+
     });
 
   }
 
-  sortDataByParams() {
-    this.activatedRoute.params.subscribe(value => {
-      this.searchFilter();
-
-      if ((value.sortType === undefined)) {
-        this.dataTransfer.store.subscribe(value => {
-
-          this.cardList = value.data;
-        });
-      }
-
-      if (value.sortType === 'trending') {
-        this.dataTransfer.store.subscribe(value => {
-
-          this.cardList = this.cardList.sort((a, b) => {
-
-            if (a.room.eventAmount > b.room.eventAmount) {
-              return -1;
-            }
-
-            if (a.room.eventAmount < b.room.eventAmount) {
-
-              return 1;
-            }
-            return 0;
-          });
-        });
-      }
-
-      if (value.sortType === 'controversial') {
-        this.dataTransfer.store.subscribe(value => {
-
-          this.cardList = this.cardList.sort((a, b) => {
-
-            if (a.controversial > b.controversial) {
-              return -1;
-            }
-
-            if (a.controversial < b.controversial) {
-
-              return 1;
-            }
-            return 0;
-          });
-        });
-      }
-
-      if (value.sortType === 'following') {
-        this.dataTransfer.store.subscribe(value => {
-
-          this.cardList = this.cardList.filter(value => value.finalAnswer !== null);
-        });
-      }
-    });
-  }
-
-  searchFilter() {
-    this.dataTransfer.store.subscribe(value => {
-
-      this.cardList = value.data.filter(value => {
-        return value.question.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase());
-      });
-
-      this.totalItems = this.cardList.length;
-    });
-
-  }
 }
