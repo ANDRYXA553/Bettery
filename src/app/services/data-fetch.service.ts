@@ -18,12 +18,12 @@ export class DataFetchService {
     return this.httpClient.get<CardItemInterface[]>(this.url)
       .pipe(map((value: CardItemInterface[]) => value.filter((obj: CardItemInterface) => {
 
-        if (!(obj.answerAmount > 1 && obj.host.avatat)) {
-          return;
-        }
-        return this.addControversyProp(obj);
-      })
-    ));
+          if (!(obj.answerAmount > 1 && obj.host.avatat)) {
+            return;
+          }
+          return this.addControversyProp(obj);
+        })
+      ));
   }
 
   addControversyProp(obj: CardItemInterface) {
@@ -46,14 +46,21 @@ export class DataFetchService {
 
     obj.betOutCome = firstTwoPopularAnswers;
 
-    const firstPlace=obj.betOutCome[0];
-    const secondPlace=obj.betOutCome[1];
+    const firstPlace = obj.betOutCome[0];
+    const secondPlace = obj.betOutCome[1];
+
+    this.controversialCalculator(firstPlace, secondPlace, obj);
+
+    this.avgBetCalculator(obj);
+
+    return obj;
+  }
+
+
+  controversialCalculator(firstPlace: number, secondPlace: number, obj: CardItemInterface) {
 
     obj.controversial = +(1 - ((firstPlace / obj.answerAmount) + ((secondPlace || 0) / obj.answerAmount))).toFixed(2);
 
-    obj.avgBet = this.avgBetCalculator(obj);
-
-    return obj;
   }
 
   avgBetCalculator(obj: CardItemInterface) {
@@ -62,6 +69,6 @@ export class DataFetchService {
     obj.parcipiantAnswers.forEach(obj => {
       sumPaY += obj.payToken
     })
-    return +(sumPaY / obj.parcipiantAnswers.length).toFixed(2)
+    obj.avgBet = +(sumPaY / obj.parcipiantAnswers.length).toFixed(2);
   };
 }
